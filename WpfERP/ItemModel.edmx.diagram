@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9a0718fb6abc413286cde5dbb30e6324" Name="Diagram1" >
+        <EntityTypeShape EntityType="ItemModel.Keszlet" Width="1.5" PointX="3.75" PointY="3.125" />
+        <EntityTypeShape EntityType="ItemModel.Termekek" Width="1.5" PointX="1" PointY="1.375" />
+        <EntityTypeShape EntityType="ItemModel.Szeriaszamok" Width="1.5" PointX="6.875" PointY="1.375" />
+        <EntityTypeShape EntityType="ItemModel.Polcok" Width="1.5" PointX="1" PointY="4.375" />
+        <AssociationConnector Association="ItemModel.TermekekSzeriaszamok" />
+        <AssociationConnector Association="ItemModel.SzeriaszamokKeszlet" />
+        <AssociationConnector Association="ItemModel.TermekekKeszlet" />
+        <AssociationConnector Association="ItemModel.PolcokKeszlet" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

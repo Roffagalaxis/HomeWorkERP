@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ItemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ItemModelStoreContainer">
+    <EntitySet Name="KeszletSet" EntityType="ItemModel.Store.KeszletSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TermekekSet" EntityType="ItemModel.Store.TermekekSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SzeriaszamokSet" EntityType="ItemModel.Store.SzeriaszamokSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PolcokSet" EntityType="ItemModel.Store.PolcokSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="TermekekSzeriaszamok" Association="ItemModel.Store.TermekekSzeriaszamok">
+      <End Role="Termekek" EntitySet="TermekekSet" />
+      <End Role="Szeriaszamok" EntitySet="SzeriaszamokSet" />
+    </AssociationSet>
+    <AssociationSet Name="SzeriaszamokKeszlet" Association="ItemModel.Store.SzeriaszamokKeszlet">
+      <End Role="Szeriaszamok" EntitySet="SzeriaszamokSet" />
+      <End Role="Keszlet" EntitySet="KeszletSet" />
+    </AssociationSet>
+    <AssociationSet Name="TermekekKeszlet" Association="ItemModel.Store.TermekekKeszlet">
+      <End Role="Termekek" EntitySet="TermekekSet" />
+      <End Role="Keszlet" EntitySet="KeszletSet" />
+    </AssociationSet>
+    <AssociationSet Name="PolcokKeszlet" Association="ItemModel.Store.PolcokKeszlet">
+      <End Role="Polcok" EntitySet="PolcokSet" />
+      <End Role="Keszlet" EntitySet="KeszletSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="KeszletSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mennyiseg" Type="int" Nullable="false" />
+    <Property Name="Szeriaszamok_Id" Type="int" Nullable="false" />
+    <Property Name="Termekek_Id" Type="int" Nullable="false" />
+    <Property Name="Polcok_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TermekekSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Neve" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Leiras" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SzeriaszamokSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Szeriaszam" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Statusz" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Termekek_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PolcokSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nev" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Szint" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Doboz" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="TermekekSzeriaszamok">
+    <End Role="Termekek" Type="ItemModel.Store.TermekekSet" Multiplicity="1" />
+    <End Role="Szeriaszamok" Type="ItemModel.Store.SzeriaszamokSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Termekek">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Szeriaszamok">
+        <PropertyRef Name="Termekek_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SzeriaszamokKeszlet">
+    <End Role="Szeriaszamok" Type="ItemModel.Store.SzeriaszamokSet" Multiplicity="1" />
+    <End Role="Keszlet" Type="ItemModel.Store.KeszletSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Szeriaszamok">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Keszlet">
+        <PropertyRef Name="Szeriaszamok_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TermekekKeszlet">
+    <End Role="Termekek" Type="ItemModel.Store.TermekekSet" Multiplicity="1" />
+    <End Role="Keszlet" Type="ItemModel.Store.KeszletSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Termekek">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Keszlet">
+        <PropertyRef Name="Termekek_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PolcokKeszlet">
+    <End Role="Polcok" Type="ItemModel.Store.PolcokSet" Multiplicity="1" />
+    <End Role="Keszlet" Type="ItemModel.Store.KeszletSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Polcok">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Keszlet">
+        <PropertyRef Name="Polcok_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ItemModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ItemModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="KeszletSet" EntityType="ItemModel.Keszlet" />
+          <EntitySet Name="TermekekSet" EntityType="ItemModel.Termekek" />
+          <EntitySet Name="SzeriaszamokSet" EntityType="ItemModel.Szeriaszamok" />
+          <EntitySet Name="PolcokSet" EntityType="ItemModel.Polcok" />
+          <AssociationSet Name="TermekekSzeriaszamok" Association="ItemModel.TermekekSzeriaszamok">
+            <End Role="Termekek" EntitySet="TermekekSet" />
+            <End Role="Szeriaszamok" EntitySet="SzeriaszamokSet" />
+          </AssociationSet>
+          <AssociationSet Name="SzeriaszamokKeszlet" Association="ItemModel.SzeriaszamokKeszlet">
+            <End Role="Szeriaszamok" EntitySet="SzeriaszamokSet" />
+            <End Role="Keszlet" EntitySet="KeszletSet" />
+          </AssociationSet>
+          <AssociationSet Name="TermekekKeszlet" Association="ItemModel.TermekekKeszlet">
+            <End Role="Termekek" EntitySet="TermekekSet" />
+            <End Role="Keszlet" EntitySet="KeszletSet" />
+          </AssociationSet>
+          <AssociationSet Name="PolcokKeszlet" Association="ItemModel.PolcokKeszlet">
+            <End Role="Polcok" EntitySet="PolcokSet" />
+            <End Role="Keszlet" EntitySet="KeszletSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Keszlet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mennyiseg" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Szeriaszamok" Relationship="ItemModel.SzeriaszamokKeszlet" FromRole="Keszlet" ToRole="Szeriaszamok" />
+          <NavigationProperty Name="Termekek" Relationship="ItemModel.TermekekKeszlet" FromRole="Keszlet" ToRole="Termekek" />
+          <NavigationProperty Name="Polcok" Relationship="ItemModel.PolcokKeszlet" FromRole="Keszlet" ToRole="Polcok" />
+        </EntityType>
+        <EntityType Name="Termekek">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Neve" Type="String" Nullable="false" />
+          <Property Name="Leiras" Type="String" Nullable="false" />
+          <NavigationProperty Name="Szeriaszamok" Relationship="ItemModel.TermekekSzeriaszamok" FromRole="Termekek" ToRole="Szeriaszamok" />
+          <NavigationProperty Name="Keszlet" Relationship="ItemModel.TermekekKeszlet" FromRole="Termekek" ToRole="Keszlet" />
+        </EntityType>
+        <EntityType Name="Szeriaszamok">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Szeriaszam" Type="String" Nullable="false" />
+          <Property Name="Statusz" Type="String" Nullable="false" />
+          <NavigationProperty Name="Termekek" Relationship="ItemModel.TermekekSzeriaszamok" FromRole="Szeriaszamok" ToRole="Termekek" />
+          <NavigationProperty Name="Keszlet" Relationship="ItemModel.SzeriaszamokKeszlet" FromRole="Szeriaszamok" ToRole="Keszlet" />
+        </EntityType>
+        <EntityType Name="Polcok">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nev" Type="String" Nullable="false" />
+          <Property Name="Szint" Type="String" Nullable="false" />
+          <Property Name="Doboz" Type="String" Nullable="false" />
+          <NavigationProperty Name="Keszlet" Relationship="ItemModel.PolcokKeszlet" FromRole="Polcok" ToRole="Keszlet" />
+        </EntityType>
+        <Association Name="TermekekSzeriaszamok">
+          <End Type="ItemModel.Termekek" Role="Termekek" Multiplicity="1" />
+          <End Type="ItemModel.Szeriaszamok" Role="Szeriaszamok" Multiplicity="*" />
+        </Association>
+        <Association Name="SzeriaszamokKeszlet">
+          <End Type="ItemModel.Szeriaszamok" Role="Szeriaszamok" Multiplicity="1" />
+          <End Type="ItemModel.Keszlet" Role="Keszlet" Multiplicity="*" />
+        </Association>
+        <Association Name="TermekekKeszlet">
+          <End Type="ItemModel.Termekek" Role="Termekek" Multiplicity="1" />
+          <End Type="ItemModel.Keszlet" Role="Keszlet" Multiplicity="*" />
+        </Association>
+        <Association Name="PolcokKeszlet">
+          <End Type="ItemModel.Polcok" Role="Polcok" Multiplicity="1" />
+          <End Type="ItemModel.Keszlet" Role="Keszlet" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ItemModelStoreContainer" CdmEntityContainer="ItemModelContainer">
+    <EntitySetMapping Name="KeszletSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ItemModel.Keszlet)">
+        <MappingFragment StoreEntitySet="KeszletSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Mennyiseg" ColumnName="Mennyiseg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TermekekSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ItemModel.Termekek)">
+        <MappingFragment StoreEntitySet="TermekekSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Neve" ColumnName="Neve" />
+          <ScalarProperty Name="Leiras" ColumnName="Leiras" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SzeriaszamokSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ItemModel.Szeriaszamok)">
+        <MappingFragment StoreEntitySet="SzeriaszamokSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Szeriaszam" ColumnName="Szeriaszam" />
+          <ScalarProperty Name="Statusz" ColumnName="Statusz" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PolcokSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ItemModel.Polcok)">
+        <MappingFragment StoreEntitySet="PolcokSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nev" ColumnName="Nev" />
+          <ScalarProperty Name="Szint" ColumnName="Szint" />
+          <ScalarProperty Name="Doboz" ColumnName="Doboz" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="TermekekSzeriaszamok" TypeName="ItemModel.TermekekSzeriaszamok" StoreEntitySet="SzeriaszamokSet">
+      <EndProperty Name="Termekek">
+        <ScalarProperty Name="Id" ColumnName="Termekek_Id" />
+      </EndProperty>
+      <EndProperty Name="Szeriaszamok">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SzeriaszamokKeszlet" TypeName="ItemModel.SzeriaszamokKeszlet" StoreEntitySet="KeszletSet">
+      <EndProperty Name="Szeriaszamok">
+        <ScalarProperty Name="Id" ColumnName="Szeriaszamok_Id" />
+      </EndProperty>
+      <EndProperty Name="Keszlet">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TermekekKeszlet" TypeName="ItemModel.TermekekKeszlet" StoreEntitySet="KeszletSet">
+      <EndProperty Name="Termekek">
+        <ScalarProperty Name="Id" ColumnName="Termekek_Id" />
+      </EndProperty>
+      <EndProperty Name="Keszlet">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PolcokKeszlet" TypeName="ItemModel.PolcokKeszlet" StoreEntitySet="KeszletSet">
+      <EndProperty Name="Polcok">
+        <ScalarProperty Name="Id" ColumnName="Polcok_Id" />
+      </EndProperty>
+      <EndProperty Name="Keszlet">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
