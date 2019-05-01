@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Button x:Name="btnTerm" Grid.Row="1" Content="Frissítés" HorizontalAlignment="Left" Width="75" Margin="7, 0, 0, 7" Click="BtnTerm_Click" />
     </Grid>
 </Window>

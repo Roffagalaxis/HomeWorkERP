@@ -24,5 +24,11 @@ namespace WpfERP
         {
             InitializeComponent();
         }
+
+        private void BtnTerm_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new TermekView();
+            window.ShowDialog();
+        }
     }
 }
