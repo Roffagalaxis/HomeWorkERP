@@ -7,12 +7,21 @@
         mc:Ignorable="d"
         Title="TermekView" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="0"/>
+                <GradientStop Color="#FFF05C5C" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <DataGrid x:Name="dbData" Grid.Row="0" IsReadOnly="True" Margin="7" HeadersVisibility="Column" />
-        <Button x:Name="btnRefresh" Grid.Row="1" Content="Frissítés" HorizontalAlignment="Left" Width="75" Margin="7, 0, 0, 7" Click="BtnRefresh_Click" />
+        <Button x:Name="btnRefresh" Grid.Row="1" Content="Adatok Frissítése" HorizontalAlignment="Left" Width="130" Margin="7, 0, 0, 7" Click="BtnRefresh_Click" />
+        <Button x:Name="btnNew" Content="Új adat felvitele" HorizontalAlignment="Left" Margin="158,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="130" Click="BtnNew_Click"/>
+        <Button x:Name="btnEdit" Content="Adat Szerkesztése" HorizontalAlignment="Left" Margin="308,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="130" Click="BtnEdit_Click"/>
+        <Button x:Name="btnSearch" Content="Keresés" HorizontalAlignment="Left" Margin="467,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="130" Click="BtnSearch_Click"/>
     </Grid>
 </Window>

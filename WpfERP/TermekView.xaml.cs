@@ -23,38 +23,87 @@ namespace WpfERP
         public TermekView()
         {
             InitializeComponent();
+            //Létrehozunk egy Db context-et
+            using (ItemModelContainer container = new ItemModelContainer())
+            {
+                List<Local_Termekek> local_Termekeks = new List<Local_Termekek>();
+
+                foreach (Termekek termekek in container.TermekekSet)
+                {
+                    // Konvertálunk lokális objektumra
+                    Local_Termekek m = new Local_Termekek() { Id = termekek.Id, Neve = termekek.Neve, Leiras = termekek.Leiras };
+                    local_Termekeks.Add(m);
+                }
+                // DataGrid adatforrás
+                dbData.ItemsSource = local_Termekeks;
+            }
         }
+
+        public string mod_nev;
+        public string mod_leiras;
 
         private void BtnRefresh_Click(object sender, RoutedEventArgs e)
         {
-            // Mindig így hozzuk létre a Db context-et
-            // Automatikusan megszűnik a using végén
+            //Létrehozunk egy Db context-et
             using (ItemModelContainer container = new ItemModelContainer())
             {
-                // Mindig így hozzuk létre a Db context-et
-                // Automatikusan megszűnik a using végén
-                List<Szeriaszamok> mufajok = new List<Szeriaszamok>();
+                List<Local_Termekek> local_Termekeks = new List<Local_Termekek>();
 
-                //// Include("<tulajdonságnév>") -> valamilyen JOIN (többnyire INNER)
-                //foreach (Genre genre in container.Genres.Include("Movies"))
-                //{
-                //    // Konvertálunk egyedi (lokális) objektumokra,
-                //    // az egyszerűbb megjelenítés végett (Genre -> Műfaj)
-                //    Termekek m = new Termekek() { Id = genre.Id, Név = genre.Name };
-                //    foreach (Movie movie in genre.Movies)
-                //        m.Filmek += (movie.Title + Environment.NewLine);
-
-                //    mufajok.Add(m);
-                //}
-
-
-                foreach (var x in container.SzeriaszamokSet)
+                foreach (Termekek termekek in container.TermekekSet)
                 {
-                    Szeriaszamok sz = x;
-                    mufajok.Add(sz);
+                    // Konvertálunk lokális objektumra
+                    Local_Termekek m = new Local_Termekek() { Id = termekek.Id, Neve = termekek.Neve, Leiras = termekek.Leiras };
+                    local_Termekeks.Add(m);
                 }
-                // Megadjuk a DataGrid adatforrást
-                dbData.ItemsSource = mufajok;
+                // DataGrid adatforrás
+                dbData.ItemsSource = local_Termekeks;
+            }
+        }
+
+        private void BtnNew_Click(object sender, RoutedEventArgs e)
+        {
+            var Termek_New_Edit = new Termek_New_Edit();
+            Termek_New_Edit.ShowDialog();
+            this.mod_leiras = Termek_New_Edit.mod_leiras;
+            this.mod_nev = Termek_New_Edit.mod_nev;
+        }
+
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            var Termek_New_Edit = new Termek_New_Edit();
+            Termek_New_Edit.ShowDialog();
+            this.mod_leiras = Termek_New_Edit.mod_leiras;
+            this.mod_nev = Termek_New_Edit.mod_nev;
+        }
+
+        private void BtnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            var Termek_New_Edit = new Termek_New_Edit();
+            Termek_New_Edit.btnSave.Content = "Keresés";
+            Termek_New_Edit.ID.Visibility = Visibility.Hidden;
+            Termek_New_Edit.ID_box.Visibility = Visibility.Hidden;
+            Termek_New_Edit.ShowDialog();
+            this.mod_leiras = Termek_New_Edit.mod_leiras;
+            this.mod_nev = Termek_New_Edit.mod_nev;
+            using (ItemModelContainer container = new ItemModelContainer())
+            {
+                List<Local_Termekek> local_Termekeks = new List<Local_Termekek>();
+                //ha leriasra keresünk- csak pontos egyezés!!!
+                foreach (Termekek termekek in container.TermekekSet.Where(u => u.Leiras == mod_leiras))
+                {
+                    // Konvertálunk lokális objektumra
+                    Local_Termekek m = new Local_Termekek() { Id = termekek.Id, Neve = termekek.Neve, Leiras = termekek.Leiras };
+                    local_Termekeks.Add(m);
+                }
+                //ha névre keresünk- csak pontso egyezés!!!
+                foreach (Termekek termekek in container.TermekekSet.Where(u => u.Neve == mod_nev))
+                {
+                    // Konvertálunk lokális objektumra
+                    Local_Termekek m = new Local_Termekek() { Id = termekek.Id, Neve = termekek.Neve, Leiras = termekek.Leiras };
+                    local_Termekeks.Add(m);
+                }
+                //dataGrid adatforrás
+                dbData.ItemsSource = local_Termekeks;
             }
         }
     }

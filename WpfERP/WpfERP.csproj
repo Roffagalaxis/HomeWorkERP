@@ -79,6 +79,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CenterWindow.xaml.cs">
+      <DependentUpon>CenterWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ItemModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -87,6 +90,10 @@
     <Compile Include="Keszlet.cs">
       <DependentUpon>ItemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Local_Keszlet.cs" />
+    <Compile Include="Local_Polcok.cs" />
+    <Compile Include="Local_Szeriaszamok.cs" />
+    <Compile Include="Local_Termekek.cs" />
     <Compile Include="Polcok.cs">
       <DependentUpon>ItemModel.tt</DependentUpon>
     </Compile>
@@ -99,6 +106,16 @@
     <Compile Include="TermekView.xaml.cs">
       <DependentUpon>TermekView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Termek_New_Edit.xaml.cs">
+      <DependentUpon>Termek_New_Edit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>ItemModel.tt</DependentUpon>
+    </Compile>
+    <Page Include="CenterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -122,6 +139,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="TermekView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Termek_New_Edit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

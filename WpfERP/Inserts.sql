@@ -7,7 +7,7 @@
  insert into TermekekSet(neve, leiras) values ('Karlánc', 'Fémötvözetből'); 	
  insert into TermekekSet(neve, leiras) values ('Kövekek', 'dkg');
  insert into TermekekSet(neve, leiras) values ('Ragasztó', 'Tubus');
-COMMIT;
+--
  insert into SzeriaszamokSet(szeriaszam, termekek_id, statusz) values ('AA1', 1, 3);
  insert into SzeriaszamokSet(szeriaszam, termekek_id, statusz) values ('BB1', 2, 2);
  insert into SzeriaszamokSet(szeriaszam, termekek_id, statusz) values ('CC1', 3, 3);
@@ -30,7 +30,7 @@ COMMIT;
  insert into SzeriaszamokSet(szeriaszam, termekek_id, statusz) values ('AA5', 6, 2);
  insert into SzeriaszamokSet(szeriaszam, termekek_id, statusz) values ('BB4', 1, 1);
  insert into SzeriaszamokSet(szeriaszam, termekek_id, statusz) values ('AA6', 6, 2); 	
-COMMIT;
+--
  insert into PolcokSet(nev, szint, doboz) values ('BAL', '1', 'A');
  insert into PolcokSet(nev, szint, doboz) values ('BAL', '1', 'B');
  insert into PolcokSet(nev, szint, doboz) values ('BAL', '2', 'A');
@@ -41,7 +41,7 @@ COMMIT;
  insert into PolcokSet(nev, szint, doboz) values ('JOBB', '2', 'B');
  insert into PolcokSet(nev, szint, doboz) values ('JOBB', '3', 'A');
  insert into PolcokSet(nev, szint, doboz) values ('JOBB', '4', 'A');
-COMMIT;
+--
  insert into KeszletSet(termekek_id, szeriaszamok_id, polcok_id, mennyiseg) values (8,NULL, 2, 20);
  insert into KeszletSet(termekek_id, szeriaszamok_id, polcok_id, mennyiseg) values (9,NULL, 1, 10);
  insert into KeszletSet(termekek_id, szeriaszamok_id, polcok_id, mennyiseg) values (2, 2, 4, 1);
@@ -54,4 +54,5 @@ COMMIT;
  insert into KeszletSet(termekek_id, szeriaszamok_id, polcok_id, mennyiseg) values (6,17, 9, 1);
  insert into KeszletSet(termekek_id, szeriaszamok_id, polcok_id, mennyiseg) values (1,20, 3, 1);
  insert into KeszletSet(termekek_id, szeriaszamok_id, polcok_id, mennyiseg) values (1,22, 3, 1);
-COMMIT;
+--
+ Insert into UsersSet (Name, Password) values ('Admin', 'Admin2');

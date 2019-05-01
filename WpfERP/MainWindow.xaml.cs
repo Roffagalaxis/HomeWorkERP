@@ -24,11 +24,25 @@ namespace WpfERP
         {
             InitializeComponent();
         }
-
-        private void BtnTerm_Click(object sender, RoutedEventArgs e)
+        
+        //belépés
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var window = new TermekView();
-            window.ShowDialog();
+            using (ItemModelContainer container = new ItemModelContainer())
+            {
+                //"SELECT * FROM Users WHERE Name = 'userfield'
+                var user = container.UsersSet.Where(u => u.Name == userfield.Text).SingleOrDefault();
+                if (user != null && user.Password == pwfield.Password)
+                {
+                    var window = new CenterWindow();
+                    window.Show();
+                    this.Close();                    
+                }
+                else
+                {
+                    Errorbox.Text = "Hibás felhasználónév vagy jelszó!!";
+                }
+            }
         }
     }
 }

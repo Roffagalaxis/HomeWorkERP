@@ -10,6 +10,7 @@
     <EntitySet Name="TermekekSet" EntityType="ItemModel.Store.TermekekSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SzeriaszamokSet" EntityType="ItemModel.Store.SzeriaszamokSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PolcokSet" EntityType="ItemModel.Store.PolcokSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UsersSet" EntityType="ItemModel.Store.UsersSet" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="TermekekSzeriaszamok" Association="ItemModel.Store.TermekekSzeriaszamok">
       <End Role="Termekek" EntitySet="TermekekSet" />
       <End Role="Szeriaszamok" EntitySet="SzeriaszamokSet" />
@@ -62,6 +63,14 @@
     <Property Name="Nev" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Szint" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Doboz" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsersSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="TermekekSzeriaszamok">
     <End Role="Termekek" Type="ItemModel.Store.TermekekSet" Multiplicity="1" />
@@ -136,6 +145,7 @@
             <End Role="Polcok" EntitySet="PolcokSet" />
             <End Role="Keszlet" EntitySet="KeszletSet" />
           </AssociationSet>
+          <EntitySet Name="UsersSet" EntityType="ItemModel.Users" />
         </EntityContainer>
         <EntityType Name="Keszlet">
           <Key>
@@ -193,6 +203,14 @@
           <End Type="ItemModel.Polcok" Role="Polcok" Multiplicity="1" />
           <End Type="ItemModel.Keszlet" Role="Keszlet" Multiplicity="*" />
         </Association>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -232,6 +250,15 @@
           <ScalarProperty Name="Nev" ColumnName="Nev" />
           <ScalarProperty Name="Szint" ColumnName="Szint" />
           <ScalarProperty Name="Doboz" ColumnName="Doboz" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ItemModel.Users)">
+        <MappingFragment StoreEntitySet="UsersSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfERP"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="WpfERP" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btnTerm" Grid.Row="1" Content="Frissítés" HorizontalAlignment="Left" Width="75" Margin="7, 0, 0, 7" Click="BtnTerm_Click" />
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="0"/>
+                <GradientStop Color="#FFF05C5C" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <TextBlock HorizontalAlignment="Left" Margin="298,25,0,0" TextWrapping="Wrap" Text="Kérjük jelentkezzen be" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe Print" Foreground="#FFFD0000" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="126,72,0,0" TextWrapping="Wrap" Text="Felhasználónév" VerticalAlignment="Top" FontFamily="Segoe Print" Foreground="#FFFDF9F9"/>
+        <TextBox x:Name="userfield" HorizontalAlignment="Left" Height="23" Margin="255,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="147,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" RenderTransformOrigin="0.806,0.913" FontFamily="Segoe Print" Foreground="#FFF7F3F3"><Run Text="Jelszó"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+        <PasswordBox x:Name="pwfield" HorizontalAlignment="Left" Margin="255,110,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
+        <Button Content="Bejelentkezés" HorizontalAlignment="Left" Margin="280,167,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <TextBlock x:Name="Errorbox" HorizontalAlignment="Left" Margin="494,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFFDF9F9"/>
+
+
     </Grid>
 </Window>

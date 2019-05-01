@@ -13,6 +13,7 @@
         <AssociationConnector Association="ItemModel.SzeriaszamokKeszlet" />
         <AssociationConnector Association="ItemModel.TermekekKeszlet" />
         <AssociationConnector Association="ItemModel.PolcokKeszlet" />
+        <EntityTypeShape EntityType="ItemModel.Users" Width="1.5" PointX="7.625" PointY="4.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

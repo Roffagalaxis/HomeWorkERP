@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/30/2019 15:19:58
+-- Date Created: 05/01/2019 13:55:03
 -- Generated from EDMX file: C:\Users\tamalik\OneDrive - National Instruments\personal\UNI_Hajni\2018_19_2\Vizualis_prog_RH\WpfERP\WpfERP\ItemModel.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,35 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_TermekekSzeriaszamok]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SzeriaszamokSet] DROP CONSTRAINT [FK_TermekekSzeriaszamok];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SzeriaszamokKeszlet]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[KeszletSet] DROP CONSTRAINT [FK_SzeriaszamokKeszlet];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TermekekKeszlet]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[KeszletSet] DROP CONSTRAINT [FK_TermekekKeszlet];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PolcokKeszlet]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[KeszletSet] DROP CONSTRAINT [FK_PolcokKeszlet];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[KeszletSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[KeszletSet];
+GO
+IF OBJECT_ID(N'[dbo].[TermekekSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TermekekSet];
+GO
+IF OBJECT_ID(N'[dbo].[SzeriaszamokSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SzeriaszamokSet];
+GO
+IF OBJECT_ID(N'[dbo].[PolcokSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PolcokSet];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -63,6 +87,14 @@ CREATE TABLE [dbo].[PolcokSet] (
 );
 GO
 
+-- Creating table 'UsersSet'
+CREATE TABLE [dbo].[UsersSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Password] nvarchar(max)  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -88,6 +120,12 @@ GO
 -- Creating primary key on [Id] in table 'PolcokSet'
 ALTER TABLE [dbo].[PolcokSet]
 ADD CONSTRAINT [PK_PolcokSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'UsersSet'
+ALTER TABLE [dbo].[UsersSet]
+ADD CONSTRAINT [PK_UsersSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 

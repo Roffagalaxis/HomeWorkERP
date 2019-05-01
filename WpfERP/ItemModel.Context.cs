@@ -29,5 +29,6 @@ namespace WpfERP
         public virtual DbSet<Termekek> TermekekSet { get; set; }
         public virtual DbSet<Szeriaszamok> SzeriaszamokSet { get; set; }
         public virtual DbSet<Polcok> PolcokSet { get; set; }
+        public virtual DbSet<Users> UsersSet { get; set; }
     }
 }
