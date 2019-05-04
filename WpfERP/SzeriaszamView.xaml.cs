@@ -149,23 +149,26 @@ namespace WpfERP
             //adatmentés
             using (ItemModelContainer container = new ItemModelContainer())
             {
-                List<Local_Szeriaszamok> local_Szeriaszamoks = new List<Local_Szeriaszamok>();
-                //ha leriasra keresünk- csak pontos egyezés!!!
-                foreach (Szeriaszamok szeriaszamok in container.SzeriaszamokSet.Where(u => u.Statusz == mod_statusz))
+                if (mod_statusz != null && mod_szeriaszam != null)
                 {
-                    // Konvertálunk lokális objektumra
-                    Local_Szeriaszamok m = new Local_Szeriaszamok() { Id = szeriaszamok.Id, Szeriaszam = szeriaszamok.Szeriaszam, Statusz = szeriaszamok.Statusz };
-                    local_Szeriaszamoks.Add(m);
+                    List<Local_Szeriaszamok> local_Szeriaszamoks = new List<Local_Szeriaszamok>();
+                    //ha leriasra keresünk- csak pontos egyezés!!!
+                    foreach (Szeriaszamok szeriaszamok in container.SzeriaszamokSet.Where(u => u.Statusz == mod_statusz))
+                    {
+                        // Konvertálunk lokális objektumra
+                        Local_Szeriaszamok m = new Local_Szeriaszamok() { Id = szeriaszamok.Id, Szeriaszam = szeriaszamok.Szeriaszam, Statusz = szeriaszamok.Statusz };
+                        local_Szeriaszamoks.Add(m);
+                    }
+                    //ha névre keresünk- csak pontso egyezés!!!
+                    foreach (Szeriaszamok szeriaszamok in container.SzeriaszamokSet.Where(u => u.Szeriaszam == mod_szeriaszam))
+                    {
+                        // Konvertálunk lokális objektumra
+                        Local_Szeriaszamok m = new Local_Szeriaszamok() { Id = szeriaszamok.Id, Szeriaszam = szeriaszamok.Szeriaszam, Statusz = szeriaszamok.Statusz };
+                        local_Szeriaszamoks.Add(m);
+                    }
+                    //dataGrid adatforrás
+                    dbData.ItemsSource = local_Szeriaszamoks;
                 }
-                //ha névre keresünk- csak pontso egyezés!!!
-                foreach (Szeriaszamok szeriaszamok in container.SzeriaszamokSet.Where(u => u.Szeriaszam == mod_szeriaszam))
-                {
-                    // Konvertálunk lokális objektumra
-                    Local_Szeriaszamok m = new Local_Szeriaszamok() { Id = szeriaszamok.Id, Szeriaszam = szeriaszamok.Szeriaszam, Statusz = szeriaszamok.Statusz };
-                    local_Szeriaszamoks.Add(m);
-                }
-                //dataGrid adatforrás
-                dbData.ItemsSource = local_Szeriaszamoks;
             }
         }
     }

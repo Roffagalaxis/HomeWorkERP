@@ -136,23 +136,26 @@ namespace WpfERP
             //adatmentés
             using (ItemModelContainer container = new ItemModelContainer())
             {
-                List<Local_Termekek> local_Termekeks = new List<Local_Termekek>();
-                //ha leriasra keresünk- csak pontos egyezés!!!
-                foreach (Termekek termekek in container.TermekekSet.Where(u => u.Leiras == mod_leiras))
+                if (mod_leiras != null && mod_nev != null)
                 {
-                    // Konvertálunk lokális objektumra
-                    Local_Termekek m = new Local_Termekek() { Id = termekek.Id, Neve = termekek.Neve, Leiras = termekek.Leiras };
-                    local_Termekeks.Add(m);
+                    List<Local_Termekek> local_Termekeks = new List<Local_Termekek>();
+                    //ha leriasra keresünk- csak pontos egyezés!!!
+                    foreach (Termekek termekek in container.TermekekSet.Where(u => u.Leiras == mod_leiras))
+                    {
+                        // Konvertálunk lokális objektumra
+                        Local_Termekek m = new Local_Termekek() { Id = termekek.Id, Neve = termekek.Neve, Leiras = termekek.Leiras };
+                        local_Termekeks.Add(m);
+                    }
+                    //ha névre keresünk- csak pontso egyezés!!!
+                    foreach (Termekek termekek in container.TermekekSet.Where(u => u.Neve == mod_nev))
+                    {
+                        // Konvertálunk lokális objektumra
+                        Local_Termekek m = new Local_Termekek() { Id = termekek.Id, Neve = termekek.Neve, Leiras = termekek.Leiras };
+                        local_Termekeks.Add(m);
+                    }
+                    //dataGrid adatforrás
+                    dbData.ItemsSource = local_Termekeks;
                 }
-                //ha névre keresünk- csak pontso egyezés!!!
-                foreach (Termekek termekek in container.TermekekSet.Where(u => u.Neve == mod_nev))
-                {
-                    // Konvertálunk lokális objektumra
-                    Local_Termekek m = new Local_Termekek() { Id = termekek.Id, Neve = termekek.Neve, Leiras = termekek.Leiras };
-                    local_Termekeks.Add(m);
-                }
-                //dataGrid adatforrás
-                dbData.ItemsSource = local_Termekeks;
             }
         }
     }
