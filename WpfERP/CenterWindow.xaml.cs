@@ -60,5 +60,11 @@ namespace WpfERP
             var TermViewWindow = new TermekView();
             TermViewWindow.Show();
         }
+        //Szériaszámok megnyitása
+        private void Szeria_View_Click(object sender, RoutedEventArgs e)
+        {
+            var SzeriaszamWindow = new SzeriaszamView();
+            SzeriaszamWindow.Show();
+        }
     }
 }

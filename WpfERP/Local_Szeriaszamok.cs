@@ -11,6 +11,5 @@ namespace WpfERP
         public int Id { get; set; }
         public string Szeriaszam { get; set; }
         public string Statusz { get; set; }
-        public string Termek_nev { get; set; }
     }
 }

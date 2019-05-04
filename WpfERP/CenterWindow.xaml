@@ -21,6 +21,7 @@
             </MenuItem>
             <MenuItem Header="Nézet">
                 <MenuItem x:Name="Term_View" Header="Termékek" Click="Term_View_Click"/>
+                <MenuItem x:Name="Szeria_View" Header="Szeriaszámok" Click="Szeria_View_Click"/>
             </MenuItem>
         </Menu>
         <DataGrid x:Name="dbPreview" Grid.Row="0" IsReadOnly="True" Margin="7,119,7,7" HeadersVisibility="Column" />

@@ -101,6 +101,12 @@
     <Compile Include="Szeriaszamok.cs">
       <DependentUpon>ItemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SzeriaszamView.xaml.cs">
+      <DependentUpon>SzeriaszamView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Szeriaszam_New_Edit.xaml.cs">
+      <DependentUpon>Szeriaszam_New_Edit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Termekek.cs">
       <DependentUpon>ItemModel.tt</DependentUpon>
     </Compile>
@@ -139,6 +145,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SzeriaszamView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Szeriaszam_New_Edit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TermekView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
