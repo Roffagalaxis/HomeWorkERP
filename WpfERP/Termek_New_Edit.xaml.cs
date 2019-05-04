@@ -26,17 +26,32 @@ namespace WpfERP
 
         public string mod_nev;
         public string mod_leiras;
+        public Termekek cbAktualis;
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            mod_leiras = null;
+            mod_nev = null;
         }
-
+        //A boxokból kimentjük az adatokat
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             mod_leiras = Leiras_box.Text;
             mod_nev = Name_box.Text;
             this.Close();
+        }
+
+        private void CbNev_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //Aktuális item
+            cbAktualis = ((ComboBox)sender).SelectedItem as Termekek;
+            //CB beállítása
+            cbNev.SelectedItem = cbAktualis;
+            //boxok beállítása
+            ID_box.Text = cbAktualis.Id.ToString();
+            Name_box.Text = cbAktualis.Neve;
+            Leiras_box.Text = cbAktualis.Leiras;
         }
     }
 }

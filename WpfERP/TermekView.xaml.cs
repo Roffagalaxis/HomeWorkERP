@@ -42,6 +42,7 @@ namespace WpfERP
         public string mod_nev;
         public string mod_leiras;
 
+        //Frissítés Gomb
         private void BtnRefresh_Click(object sender, RoutedEventArgs e)
         {
             //Létrehozunk egy Db context-et
@@ -59,32 +60,80 @@ namespace WpfERP
                 dbData.ItemsSource = local_Termekeks;
             }
         }
-
+        //Új Gomb
         private void BtnNew_Click(object sender, RoutedEventArgs e)
         {
             var Termek_New_Edit = new Termek_New_Edit();
+            //elrejtjük a felesleget
+            Termek_New_Edit.ID.Visibility = Visibility.Hidden;
+            Termek_New_Edit.ID_box.Visibility = Visibility.Hidden;
+            Termek_New_Edit.cbNev.Visibility = Visibility.Hidden;
+            //megnyitás
             Termek_New_Edit.ShowDialog();
+            //visszatérés
             this.mod_leiras = Termek_New_Edit.mod_leiras;
             this.mod_nev = Termek_New_Edit.mod_nev;
+            //vissza gomb és üres adat felvitel akadályozás
+            if (mod_leiras != null && mod_nev != null && mod_leiras != "" && mod_nev != "")
+            {
+                using (ItemModelContainer container = new ItemModelContainer())
+                {
+                    Termekek ujtermek = new Termekek
+                    {
+                        Neve = mod_nev,
+                        Leiras = mod_leiras
+                    };
+                    //hozzáadjuk a terméket
+                    container.TermekekSet.Add(ujtermek);
+                    //adatok mentése
+                    container.SaveChanges();
+                }
+            }
+            
         }
-
+        //Szerkesztés Gomb
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
             var Termek_New_Edit = new Termek_New_Edit();
+            //feltöltöm a ComboBoxot
+            using (ItemModelContainer container = new ItemModelContainer())
+            {
+                Termek_New_Edit.cbNev.DataContext = container.TermekekSet.ToList();
+            }
+            Termek_New_Edit.cbNev.SelectedIndex = 0;                
+            //megnyitás
             Termek_New_Edit.ShowDialog();
+            //visszatérés
             this.mod_leiras = Termek_New_Edit.mod_leiras;
             this.mod_nev = Termek_New_Edit.mod_nev;
+            //vissza gomb és üres adat felvitel akadályozás
+            if (mod_leiras != null && mod_nev != null && mod_leiras != "" && mod_nev != "")
+            {
+                using (ItemModelContainer container = new ItemModelContainer())
+                {
+                    Termek_New_Edit.cbAktualis.Neve = mod_nev;
+                    Termek_New_Edit.cbAktualis.Leiras = mod_leiras;
+                    container.Entry(Termek_New_Edit.cbAktualis).State = System.Data.Entity.EntityState.Modified;
+                    //adatok mentése
+                    container.SaveChanges();
+                }
+            }
         }
-
+        //Keresés Gomb
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
             var Termek_New_Edit = new Termek_New_Edit();
             Termek_New_Edit.btnSave.Content = "Keresés";
+            //elrejtjük a felesleget
             Termek_New_Edit.ID.Visibility = Visibility.Hidden;
             Termek_New_Edit.ID_box.Visibility = Visibility.Hidden;
+            Termek_New_Edit.cbNev.Visibility = Visibility.Hidden;
+            //megnyitás
             Termek_New_Edit.ShowDialog();
+            //visszatérés
             this.mod_leiras = Termek_New_Edit.mod_leiras;
             this.mod_nev = Termek_New_Edit.mod_nev;
+            //adatmentés
             using (ItemModelContainer container = new ItemModelContainer())
             {
                 List<Local_Termekek> local_Termekeks = new List<Local_Termekek>();
