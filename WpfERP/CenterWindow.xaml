@@ -14,14 +14,16 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Menu HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="792" >
-            <MenuItem Header="File">
-                <MenuItem x:Name="Logout" Header="Logout" Click="Logout_Click"/>
+            <MenuItem Header="Fájl">
+                <MenuItem x:Name="Logout" Header="Kijelentkezés" Click="Logout_Click"/>
                 <Separator/>
-                <MenuItem x:Name="Exit" Header="Exit" Click="Exit_Click"/>
+                <MenuItem x:Name="Exit" Header="Kilépés" Click="Exit_Click"/>
             </MenuItem>
-            <MenuItem Header="View">
+            <MenuItem Header="Nézet">
                 <MenuItem x:Name="Term_View" Header="Termékek" Click="Term_View_Click"/>
             </MenuItem>
         </Menu>
+        <DataGrid x:Name="dbPreview" Grid.Row="0" IsReadOnly="True" Margin="7,119,7,7" HeadersVisibility="Column" />
+        <Label Content="A jelenleg készleten lévő, szériás termékek:" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" Width="451" FontFamily="Segoe Print" Foreground="#FFFB0FFB" FontSize="20" Background="{x:Null}"/>
     </Grid>
 </Window>

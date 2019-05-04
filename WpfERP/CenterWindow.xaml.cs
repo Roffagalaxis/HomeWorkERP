@@ -22,6 +22,22 @@ namespace WpfERP
         public CenterWindow()
         {
             InitializeComponent();
+            //Létrehozunk egy Db context-et
+            using (var ctx = new ItemModelContainer())
+            {
+                //Készleten lévő Szériás-SQL
+                List<Keszleten_Levo_Szeriak> keszleten_Levo_szeria_list = ctx.Database.SqlQuery<Keszleten_Levo_Szeriak>("" +
+                "SELECT T.NEVE TERMEK, " +
+                "SZ.SZERIASZAM, " +
+                "Concat(P.NEV, '-' , P.SZINT ,'-', P.DOBOZ) TAROLO " +
+                "FROM SzeriaszamokSet SZ, TermekekSet T, KeszletSet K, PolcokSet P " +
+                "WHERE SZ.TERMEKEK_ID = T.ID " +
+                "AND K.SZERIASZAMOK_ID = SZ.ID " +
+                "AND P.ID = K.POLCOK_ID; ").ToList();
+
+                // DataGrid adatforrás
+                dbPreview.ItemsSource = keszleten_Levo_szeria_list;
+            }
         }
         
         //Kijelentkezünk

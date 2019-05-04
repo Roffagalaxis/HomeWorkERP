@@ -90,6 +90,7 @@
     <Compile Include="Keszlet.cs">
       <DependentUpon>ItemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Keszleten_Levo_Szeriak.cs" />
     <Compile Include="Local_Keszlet.cs" />
     <Compile Include="Local_Polcok.cs" />
     <Compile Include="Local_Szeriaszamok.cs" />
